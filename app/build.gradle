@@ -27,4 +27,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'com.squareup.okhttp:okhttp:2.7.5'
     compile 'com.android.support:design:27.0.2'
+    compile 'org.litepal.android:core:1.6.1'
 }

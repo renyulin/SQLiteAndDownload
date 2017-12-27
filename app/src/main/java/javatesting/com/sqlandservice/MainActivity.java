@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import javatesting.com.sqlandservice.download.DownActivity;
+import javatesting.com.sqlandservice.lite.LitePalActivity;
 import javatesting.com.sqlandservice.sq.SqlActivity;
 
 /**
@@ -26,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.download:
                 startActivity(new Intent(this, DownActivity.class));
+                break;
+            case R.id.LitePal:
+                startActivity(new Intent(this, LitePalActivity.class));
                 break;
         }
     }

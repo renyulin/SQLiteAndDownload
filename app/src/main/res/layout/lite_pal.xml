@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/litePal_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:onClick="litePalClick"
+        android:text="litePal" />
+
+    <Button
+        android:id="@+id/litePal_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:onClick="litePalClick"
+        android:text="litePal_add" />
+
+    <Button
+        android:id="@+id/litePal_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:onClick="litePalClick"
+        android:text="litePal_update" />
+
+    <Button
+        android:id="@+id/litePal_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:onClick="litePalClick"
+        android:text="litePal_delete" />
+
+    <Button
+        android:id="@+id/litePal_query"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:onClick="litePalClick"
+        android:text="litePal_query" />
+
+    <Button
+        android:id="@+id/litePal_query_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:onClick="litePalClick"
+        android:text="query_all" />
+
+    <ImageView
+        android:id="@+id/litePalImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp" />
+</LinearLayout> 
