@@ -24,4 +24,18 @@
         android:layout_height="wrap_content"
         android:onClick="onClick"
         android:text="LitePal" />
+
+    <Button
+        android:id="@+id/serviceStartTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="serviceStartTest" />
+
+    <Button
+        android:id="@+id/serviceStopTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="serviceStopTest" />
 </LinearLayout>

@@ -54,7 +54,7 @@ public class AlarmService extends Service {
         Intent intent = new Intent(this, AlarmService.class);
         intent.putExtra("data", "come on baby");
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
-        long triggerAtTime = System.currentTimeMillis() + 10 * 1000;
+        long triggerAtTime = System.currentTimeMillis() + 10* 1000;
         //setExact 准确执行时间   set系统统一执行，时间不准确但是属于安卓的系统优化，主要是省电
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 //            manager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerAtTime, pi);

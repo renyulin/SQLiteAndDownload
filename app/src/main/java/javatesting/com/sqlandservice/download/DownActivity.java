@@ -21,7 +21,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import javatesting.com.sqlandservice.R;
-
+import javatesting.com.sqlandservice.TestService;
 
 /**
  *
@@ -110,6 +110,14 @@ public class DownActivity extends AppCompatActivity {
                 break;
             case R.id.floatingActionButton:
                 snackInit(view);
+                break;
+            case R.id.serviceStartTest:
+                Intent testStart = new Intent(this, TestService.class);
+                startService(testStart);
+                break;
+            case R.id.serviceStopTest:
+                Intent testStop = new Intent(this, TestService.class);
+                stopService(testStop);
                 break;
         }
     }

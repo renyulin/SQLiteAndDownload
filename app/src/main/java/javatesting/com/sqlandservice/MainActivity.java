@@ -1,8 +1,12 @@
 package javatesting.com.sqlandservice;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 
 import javatesting.com.sqlandservice.download.DownActivity;
@@ -31,6 +35,48 @@ public class MainActivity extends AppCompatActivity {
             case R.id.LitePal:
                 startActivity(new Intent(this, LitePalActivity.class));
                 break;
+            case R.id.serviceStartTest:
+//                Intent testStart = new Intent(this, TestService.class);
+//                startService(testStart);
+                startTestService();
+                break;
+            case R.id.serviceStopTest:
+//                Intent testStop = new Intent(this, TestService.class);
+//                stopService(testStop);
+                unbindTestService();
+                break;
         }
+    }
+
+    private void unbindTestService() {
+//        Intent testStop = new Intent(this, TestService.class);
+//        stopService(testStop);
+        unbindService(serviceConnection);
+    }
+
+    private TestService.TestBinder testBinder;
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            testBinder = (TestService.TestBinder) iBinder;
+            testBinder.getProgress(0);
+            testBinder.startSomething();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+
+        }
+    };
+
+    private void startTestService() {
+        Intent testStart = new Intent(this, TestService.class);
+        //BIND_AUTO_CREATE  自动创建，不运行onStartCommand方法
+        bindService(testStart, serviceConnection, BIND_AUTO_CREATE);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
     }
 }

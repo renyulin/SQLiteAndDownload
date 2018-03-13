@@ -49,6 +49,20 @@
         android:layout_margin="5dp"
         android:onClick="downloadClick"
         android:text="alarm" />
+
+    <Button
+        android:id="@+id/serviceStartTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="downloadClick"
+        android:text="serviceStartTest" />
+
+    <Button
+        android:id="@+id/serviceStopTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="downloadClick"
+        android:text="serviceStopTest" />
     <!--这个控件只能给当前点击事件的View进行提高不遮挡-->
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
