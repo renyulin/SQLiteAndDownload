@@ -38,4 +38,11 @@
         android:layout_height="wrap_content"
         android:onClick="onClick"
         android:text="serviceStopTest" />
+
+    <Button
+        android:id="@+id/picAct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="picAct" />
 </LinearLayout>

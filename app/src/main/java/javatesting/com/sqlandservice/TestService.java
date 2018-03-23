@@ -21,6 +21,12 @@ public class TestService extends Service {
             Log.e("TestService", "Binder getProgress");
             return pro;
         }
+
+        BinderFace face;
+
+        public void link(BinderFace mFace) {
+            this.face = mFace;
+        }
     }
 
     @Override
@@ -35,7 +41,10 @@ public class TestService extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                //...
+                if (testBinder.face != null) {
+                    testBinder.face.longData("发送数据了");
+                }
+                //.../
 //                stopSelf();
             }
         }).start();
@@ -46,5 +55,9 @@ public class TestService extends Service {
     public void onCreate() {
         Log.e("TestService", "Service onCreate");
         super.onCreate();
+    }
+
+    interface BinderFace {
+        void longData(Object o);
     }
 }

@@ -8,9 +8,11 @@ import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import javatesting.com.sqlandservice.download.DownActivity;
 import javatesting.com.sqlandservice.lite.LitePalActivity;
+import javatesting.com.sqlandservice.pic.PicActivity;
 import javatesting.com.sqlandservice.sq.SqlActivity;
 
 /**
@@ -45,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
 //                stopService(testStop);
                 unbindTestService();
                 break;
+            case R.id.picAct:
+                startActivity(new Intent(this, PicActivity.class));
+                break;
         }
     }
 
@@ -61,6 +66,17 @@ public class MainActivity extends AppCompatActivity {
             testBinder = (TestService.TestBinder) iBinder;
             testBinder.getProgress(0);
             testBinder.startSomething();
+            testBinder.link(new TestService.BinderFace() {
+                @Override
+                public void longData(final Object o) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainActivity.this, (String) o, Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            });
         }
 
         @Override
@@ -72,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
     private void startTestService() {
         Intent testStart = new Intent(this, TestService.class);
         //BIND_AUTO_CREATE  自动创建，不运行onStartCommand方法
+        startService(testStart);
         bindService(testStart, serviceConnection, BIND_AUTO_CREATE);
     }
 

@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 public class TestIntentService extends IntentService {
-
     public TestIntentService() {
         super("TestIntentService");
     }
