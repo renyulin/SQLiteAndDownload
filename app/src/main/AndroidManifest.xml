@@ -43,5 +43,13 @@
         <service android:name=".TestIntentService" />
 
         <activity android:name=".pic.PicActivity" />
+
+        <activity android:name=".download.BindingActivity" />
+
+        <service
+            android:name=".download.LocalService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
+
 </manifest>

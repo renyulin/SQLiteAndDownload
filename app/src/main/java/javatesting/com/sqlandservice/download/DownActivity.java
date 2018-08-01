@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -56,10 +59,26 @@ public class DownActivity extends AppCompatActivity {
     }
 
     private void addPerssion() {
+        if (!checkPermission()) {
+            getPermission();
+        }
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         }
+    }
+
+    public boolean checkPermission() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            return false;
+        }
+        return true;
+    }
+
+    private void getPermission() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO
+                , Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
     }
 
     private void edit() {
@@ -156,16 +175,32 @@ public class DownActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case 1:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, "permission add success", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(this, "please add permission too", Toast.LENGTH_LONG).show();
-                    addPerssion();
+                for (int i = 0; i < grantResults.length; i++) {
+                    if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                        boolean b = false;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            b = shouldShowRequestPermissionRationale(permissions[i]);
+                        }
+                        if (!b) {
+                            goToAppSetting();
+                        } else {
+                            getPermission();
+                        }
+                    }
                 }
                 break;
             default:
                 break;
         }
+    }
+
+    private void goToAppSetting() {
+        Toast.makeText(this, "请到设置页面获取相应权限，继续使用", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        startActivityForResult(intent, 123);
     }
 
     @Override
